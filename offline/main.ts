@@ -6,6 +6,9 @@ import { decodeKeyQR, encodeKeyQR } from '../src/shared/qr';
 import { capsuleFileName } from '../src/shared/filenames';
 import { decodeWords, encodeWords } from '../src/shared/words';
 import type { Capsule } from '../src/shared/types';
+import { syncViewport } from '../src/shared/viewport';
+
+syncViewport();
 
 const capsule: Capsule = JSON.parse(document.getElementById('capsule')!.textContent!);
 const app = document.getElementById('app')!;

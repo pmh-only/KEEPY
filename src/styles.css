@@ -10,6 +10,7 @@
 }
 
 * { box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
 body { margin: 0; }
 button, input, textarea, select { font: inherit; }
 button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
@@ -20,7 +21,7 @@ input, select, textarea { min-width: 0; color: #374632; }
 ::selection { background: #dae7c8; }
 button:focus-visible, a:focus-visible { outline: 3px solid #a7bd93; outline-offset: 3px; }
 button { transition: background .15s, opacity .15s; }
-#root { width: 100%; max-width: 480px; height: 100dvh; margin-inline: auto; }
+#root { position: fixed; top: var(--app-offset-top, 0px); inset-inline: 0; width: 100%; max-width: 480px; height: var(--app-height, 100dvh); margin-inline: auto; overflow: hidden; }
 .app-frame { height: 100%; display: flex; flex-direction: column; padding-inline: 24px; }
 .app-header { height: 70px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; }
 .logo { display: inline-flex; align-items: center; gap: 7px; font-size: 27px; font-weight: 750; letter-spacing: -1.4px; }
@@ -203,3 +204,26 @@ input::placeholder, textarea::placeholder { color: #b1bba5; }
   .home-form { gap: 12px; }
   .home-screen .bottom-note { display: none; }
 }
+
+@media (hover: none) and (pointer: coarse) {
+  /* Smaller editable text makes iOS zoom the page when the keyboard opens. */
+  input:not([type=checkbox]), select, textarea { font-size: 16px !important; }
+}
+
+:root[data-keyboard-open] .app-header,
+:root[data-keyboard-open] .step-progress,
+:root[data-keyboard-open] .screen-title > p,
+:root[data-keyboard-open] .bottom-note,
+:root[data-keyboard-open] .panel-note,
+:root[data-keyboard-open] .letter-heading,
+:root[data-keyboard-open] .qr-tools,
+:root[data-keyboard-open] .scan-actions,
+:root[data-keyboard-open] .key-people { display: none; }
+:root[data-keyboard-open] .screen { gap: 12px; padding-block: 12px; }
+:root[data-keyboard-open] .screen-title h1 { font-size: 20px; line-height: 1.3; margin: 0; }
+:root[data-keyboard-open] .home-form { gap: 12px; }
+:root[data-keyboard-open] .entry-panel > input { margin: 0; }
+:root[data-keyboard-open] .letter-input { margin-block: 0 10px; }
+:root[data-keyboard-open] .invite-input { height: 64px; }
+:root[data-keyboard-open] .offline-input { flex: 1; height: 0; min-height: 0; max-height: none; }
+:root[data-keyboard-open] .screen-bottom { padding-bottom: 0; }
