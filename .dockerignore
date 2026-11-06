@@ -1,0 +1,11 @@
+.git
+node_modules
+dist
+dist-server
+.generated
+.env
+.env.*
+*.log
+.playwright-mcp
+test-results
+playwright-report

@@ -1,0 +1,36 @@
+{
+  "name": "keepy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "viewer": "node scripts/build-viewer.mjs",
+    "dev": "npm run viewer && concurrently -k -n server,web \"tsx watch server/index.ts\" \"vite --host 0.0.0.0\"",
+    "build": "npm run viewer && tsc --noEmit && vite build",
+    "build:server": "esbuild server/index.ts --bundle --platform=node --target=node24 --format=cjs --external:bufferutil --external:utf-8-validate --outfile=dist-server/index.cjs",
+    "start": "tsx server/index.ts"
+  },
+  "dependencies": {
+    "@scure/bip39": "^2.4.0",
+    "jsqr": "^1.4.0",
+    "lucide-react": "^1.67.0",
+    "qrcode": "^1.5.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "shamir-secret-sharing": "^0.0.4",
+    "ws": "^8.22.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/ws": "^8.18.2",
+    "@vitejs/plugin-react": "^6.2.1",
+    "concurrently": "^10.0.6",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
+  }
+}

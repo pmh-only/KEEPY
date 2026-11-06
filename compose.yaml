@@ -1,0 +1,13 @@
+services:
+  keepy:
+    image: keepy:latest
+    build: .
+    init: true
+    restart: unless-stopped
+    ports:
+      - "${KEEPY_PORT:-3001}:3001"
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
